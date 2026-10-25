@@ -44,7 +44,10 @@ function App() {
         {currentView === 'auth' && (
           <div>
             {isLoginMode ? (
-              <LoginForm onSwitchToRegister={() => setIsLoginMode(false)} />
+              <LoginForm 
+                onSwitchToRegister={() => setIsLoginMode(false)} 
+                onLoginSuccess={() => setCurrentView('movies')} 
+              />
             ) : (
               <RegisterForm onSwitchToLogin={() => setIsLoginMode(true)} />
             )}
