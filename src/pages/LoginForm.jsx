@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { loginUser } from '../services/api';
 
-export default function LoginForm({ onSwitchToRegister }) {
+export default function LoginForm({ onSwitchToRegister, onLoginSuccess }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [mensaje, setMensaje] = useState('');
@@ -16,6 +16,14 @@ export default function LoginForm({ onSwitchToRegister }) {
             const data = await loginUser({ email, password });
             setMensaje(`¡Bienvenido de nuevo, ${data.user.nombre}! 🎬`);
             localStorage.setItem('user', JSON.stringify(data.user));
+
+            // Redirige automáticamente a la vista de películas tras 1 segundo
+            setTimeout(() => {
+                if (onLoginSuccess) {
+                    onLoginSuccess();
+                }
+            }, 1000);
+
         } catch (err) {
             setError(err.message);
         }
