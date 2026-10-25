@@ -40,7 +40,6 @@ function App() {
       </header>
 
       <main>
-        {/* Renderizado condicional según la vista activa */}
         {currentView === 'auth' && (
           <div>
             {isLoginMode ? (
